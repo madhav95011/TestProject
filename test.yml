@@ -11,7 +11,7 @@
   hosts: localhost
   tasks:
     - name: run date command
-      command: history
+      command: whoami
       register: log2
     - debug:
         msg: "{{log2}}"
