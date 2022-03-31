@@ -6,7 +6,7 @@
       command: date
       register: log1
     - debug:
-        var: log.stdout_lines
+        var: log1.stdout_lines
 
     - name: display file contents
       command: cat /etc/ansible/hosts
