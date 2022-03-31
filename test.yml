@@ -1,0 +1,15 @@
+---
+- name: Command Module Test
+  hosts: localhost
+  tasks:
+    - name: run date command
+      command: date
+      register: log1
+    - debug:
+        var: log.stdout_lines
+
+    - name: display file contents
+      command: cat /etc/ansible/hosts
+      register: log2
+    - debug:
+        var: log2.stdout_lines
