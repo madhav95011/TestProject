@@ -8,7 +8,7 @@
     - debug:
         var: log1.stdout_lines
     - name: display file contents
-      command: cat /etc/ansible/hosts
+      command: whoami
       register: log2
     - debug:
         var: log2.stdout_lines
