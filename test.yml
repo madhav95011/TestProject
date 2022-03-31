@@ -7,7 +7,6 @@
       register: log1
     - debug:
         var: log1.stdout_lines
-
     - name: display file contents
       command: cat /etc/ansible/hosts
       register: log2
