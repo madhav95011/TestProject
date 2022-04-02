@@ -1,5 +1,5 @@
 ---
-  - hosts: s1
+  - hosts: 172.17.0.4
     tasks:
       - name: install apache2
         apt: name=apache2 update_cache=yes state=latest
