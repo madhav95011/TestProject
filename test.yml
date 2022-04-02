@@ -1,24 +1,21 @@
 ---
-  - hosts: all
-    tasks:
-      - name: install apache2
-        apt: name=apache2 update_cache=yes state=latest
+- name: Command Module Test
+  hosts: slave_nodes
+  tasks:
+    - name: run date command
+      command: date
+      register: log1
+    - debug:
+        var: log1.stdout_lines
 
-      - name: enabled mod_rewrite
-        apache2_module: name=rewrite state=present
-        notify:
-          - restart apache2
+    - name: display file contents
+      command: cat /etc/host.conf
+      register: log2
+    - debug:
+        var: log2.stdout_lines
 
-      - name: apache2 listen on port 8081
-        lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 80" line="Listen 8081" state=present
-        notify:
-          - restart apache2
-
-      - name: apache2 virtualhost on port 8081
-        lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8081>" state=present
-        notify:
-          - restart apache2
-
-    handlers:
-      - name: restart apache2
-        service: name=apache2 state=restarted
+    - name: create directory
+      command: mkdir /home/testdir
+      register: log3
+    - debug:
+        var: log3.stdout_lines
