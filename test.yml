@@ -1,6 +1,6 @@
 ---
 - name: Command Module Test
-  hosts: slave_nodes
+  hosts: all
   tasks:
     - name: run date command
       command: date
